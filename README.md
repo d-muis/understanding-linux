@@ -18,14 +18,9 @@ The GNU system was incomplete until Linus Torvalds finally released the Linux ke
 
 BSD (Berkeley Software Distribution) was a proprietary OS which derives from the original UNIX. FreeBSD and OpenBSD are its FOSS derivatives while MacOS is a proprietary one. They use different kernels but follow similar specifications as GNU/Linux and many of their components are interchangeable.
 
-
-
-
-
-
 ## Distributions
 
-Unix-like systems are completely modular. Their elemenets can be switched, added or removed depending on the purpose of the system or one's preferences. This is exactly what distributions do, released by communities or companies, they combine all necessary components of the operating system with regard to its intended use case. Some "distros" aim to be very minimal, intended for advanced users or servers, others provide a user friendly alternative to Windows or Mac. Most of the crucial components are identical across all of them and most of the differences are purely visual and can be changed in a matter of minutes. For an advanced user, only few factors are really important that differ between the distributions - their release model and their package manager. Distribution families are big groups of distributions based on a single descendant that generally share their release model and package manager.
+Unix-like systems are completely modular. Their elemenets can be switched, added or removed depending on the purpose of the system or one's preferences. This is exactly what distributions do, released by communities or companies, they combine all necessary components of the operating system with regard to its intended use case. Some "distros" aim to be very minimal, intended for advanced users or servers, others provide a user friendly alternative to Windows or Mac. Most of the crucial components are identical across all of them and most of the differences are purely visual and can be changed in a matter of minutes. For an advanced user, only few factors are really important that differ between the distributions - their release model and their package manager. Distribution families are big groups of distributions based on a single descendant and generally share their release model and packaging format
 
 #### Release Models
 
@@ -33,14 +28,23 @@ Distributions release software updates using either a point release or rolling r
 
 Debian and Red Hat distribution families are mostly point release and include popular distributions such as Ubuntu, Mint or Fedora. Arch and Gentoo distributions and their families are rolling release, this includes Manjaro or ChromeOS. The OpenSUSE distribution provides both release models to choose from.
 
-#### Package Managers
+#### Packages
+
+Packages are just software
 
 Package managers are programs used by distributions to manage downloading and installing software, called packages, from the official servers, called repositories or repos. Package managers are meant to work with specific packaging formats, the availability of certain packages might vary between the existing formats but practically speaking this is rarely an issue due to the active community.
 
+The most noteable packaging formats and their corresponding package managers are:
+
 Debian-based distros (Ubuntu, Mint etc.) share a packaging format called .deb, managed by the APT package manager. Red Hat family distros (eg. Fedora) use the .rpm package format and manage their packages using DNF. SUSE also uses .rpm packages but manages them using ZYpp. Arch-based distros use pacman to manage .pkg.tar.zst packages, which are simply compressed archives.
 
-## Main Components
+#### Universal Packages
 
+Appimages, flatpaks, snaps - containerized applications
+
+## UNIX basics
+
+Before learning anything else, you should know the general structure of the system as well as its main components. 
 Any Unix-like system consists of the following basic components: kernel, shell, programs and the filesystem. More detailed components such as an init system or a bootloader can be specified depending on their exact function or structure, I will talk about those later.
 
 #### Kernel
