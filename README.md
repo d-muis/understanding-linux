@@ -1,5 +1,7 @@
 # Understanding Linux
 
+!!!THIS GUIDE IS WORK IN PROGRESS!!!
+
 Power User's Baby Steps, or everything I wish I had known when I switched to Linux, as a Windows power user.
 
 ## Introduction
