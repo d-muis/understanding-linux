@@ -6,7 +6,7 @@ Power User's Baby Steps, or everything I wish I had known when I switched to Lin
 
 ## Introduction
 
-This is a comprehensive guide to understanding GNU/Linux systems, learning about their origin, structure, elements, distributions, common jargon etc. It is intended for beginners and intermediate Linux users that wish to understand their system and become power users. This guide provides a general overview of concepts to give you the best possible start in the shortest amount of time. This guide won't cover very advanced topics that I dare say most Linux power users don't know about or will ever need, such as the inner workings of the kernel or the graphics stack, it's a power user's baby steps guide, not a book for kernel developers. I highly recommend reading this after installing your first linux distribution (any of them will do!) to be able to test everything first-hand.
+This is a comprehensive guide to understanding GNU/Linux systems, learning about their origin, structure, elements, distributions, common jargon etc. It is intended for beginners and intermediate Linux users that wish to understand their system and become power users. This guide provides a general overview of concepts to give you the best possible start in the shortest amount of time. I highly recommend reading this after installing your first linux distribution (any of them will do) to be able to test everything first-hand. This guide won't make you an expert or teach you everything in detail but it
 
 ## Background
 
