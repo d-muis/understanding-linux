@@ -2,9 +2,11 @@
 
 Power User's Baby Steps, or everything I wish I had known when I switched to Linux, as a Windows power user.
 
+
 ## Introduction
 
 This is a comprehensive guide to understanding GNU/Linux systems, learning about their origin, structure, components, distributions, common jargon etc. It is intended for beginners and those who wish to understand their system and eventually become "power users". This guide provides a general overview of concepts to give you the best possible start in the shortest amount of time. It won't make you an expert or teach you everything in detail but it can point you in the right direction, clarify confusions, get you well equipped to expand your knowledge on more specific topics. I highly recommend reading this after installing your first linux distribution (any of them will do) to be able to test everything first-hand.
+
 
 ## Lore
 
@@ -13,6 +15,7 @@ This is a comprehensive guide to understanding GNU/Linux systems, learning about
 Early UNIX systems were proprietary and did not respect their users freedom (proprietary meaning closed-source, copyrighted). This is why **Richard Stallman** created GNU (recursive acronym for "GNU's Not Unix") - a Unix-like OS, which was entirely free to run, study, modify and redistribute. Those four freedoms are guaranteed by the GNU General Public License (GPL) and form the basis of Free and Open Source Software (FOSS). The GNU system was incomplete until **Linus Torvalds** finally released the Linux kernel and so **GNU/Linux** - a fully functional free and open source operating system was born. Nowadays many refer to it as just Linux (Linux Is Not UniX).
 
 **BSD** (Berkeley Software Distribution) was a proprietary OS which derives from the original UNIX. FreeBSD and OpenBSD are its FOSS derivatives while MacOS is a proprietary one. They follow similar specifications as Linux and many of their components are relatively interchangeable.
+
 
 ## Distributions
 
@@ -42,7 +45,7 @@ The most noteable packaging formats and their corresponding package managers are
 
 #### Package Dependencies 
 
-When writing software, developers rely on code or programs writtern by others before them. Developers may choose to include this code inside of their software (called **static linking**), or exclude it but require the program to be present on the operating system for their software to function (**dynamic linking**). On Linux, dynamic linking is often preferred, because it reduces disk space usage and allows for independent security updates to be performed. **Dependencies** are such programs (or "packages") that are required for another program to run. Whenever you install a package, package managers perform "dependency resolution" and automatically download and install all the required dependencies. When a package has been installed as a dependency but is no longer required (i.e. the program that depended on it had been removed), the package is called an **orpahn** and can be safely removed using the package manager. 
+When writing software, developers rely on code or programs writtern by others before them. Developers may choose to include this code inside of their software (called **static linking**), or exclude it but require the program to be present on the operating system for their software to function (**dynamic linking**). On Linux, dynamic linking is often preferred, because it reduces disk space usage and allows for independent security updates to be performed. **Dependencies** are such programs (or "packages") that are required for another program to run. Whenever you install a package, package managers perform "dependency resolution" and automatically download and install all the required dependencies. When a package has been installed as a dependency but is no longer required (i.e. the program that depended on it had been removed), the package is called an **orphan** and can be safely removed using the package manager. 
 
 #### Universal Packaging Formats
 
@@ -52,30 +55,60 @@ Aside from default system packages, there exist supplementary packaging formats 
 - **AppImage**
 - **nix**
   
-Some of those packaging formats (AppImage) bundle all the required dependencies together with the software to make it as portable as possible, at the cost of large file size and slow security updates. Others (Flatpak) offer runtimes - dependency groups that allow many dependencies to be shared. Some (nix) are essentially distribution-agnostic package managers, separate from the OS. For most users, Flatpaks are the recommended format to use for applications on most distributions, other than Ubuntu which ships Snaps by default.
+Some of those packaging formats (AppImage) bundle all the required dependencies together (static linking) with the software to make it as portable as possible, at the cost of large file size and slow security updates. Others (Flatpak) offer runtimes - dependency groups that allow many dependencies to be shared. Some (nix) are essentially distribution-agnostic package managers, separate from the OS. For most users, Flatpaks are the recommended format to use for applications on most distributions, other than Ubuntu which ships Snaps by default.
+
 
 ## UNIX basics
 
-Before learning anything else, you should know the general structure of the system as well as its main components. 
-Any Unix-like system consists of the following basic components: kernel, shell, programs and the filesystem. More detailed components such as an init system or a bootloader can be specified depending on their exact function or structure, I will talk about those later.
+Before learning anything else, you should know the general structure of the system as well as its main components. While crucial to understand Linux, most of this knowledge applies to UNIX systems, or even operating systems in general.
+Any Unix-like system consists of the following basic components: kernel, shell, programs and the filesystem. More detailed components such as an init system or a bootloader can then be distinguished depending on their exact function or structure, I will talk about those later.
 
 #### Kernel
 
-The kernel directly interacts with computer's hardware. It allocates time and memory, handles files and processes. You don't need to worry about how it does it, none of us know. The Linux kernel is able to dynamically load modules and can also be given parameters that modify its functionality. Aside from the default kernel, others also exist, such as the Long Term Support (LTS) kernel.
+The kernel directly interacts with computer's hardware. It allocates time and memory, handles files and processes. You don't need to worry about how it does it, most of us don't know. The Linux kernel is able to dynamically load modules and can also be given parameters that modify its functionality. Aside from the default kernel, others also exist, such as the Long Term Support (LTS) kernel. Most distros provide their own, modified kernel versions, tailored to their intended users. 
 
 #### Shell
 
-The shell is a program that allows the user to interact with the system, it sends direct requests to the kernel. Most systems consist of multiple shells: a system shell, a user shell and a graphical shell. Bourne Shell (sh) or its derivatives like the Bourne-Again Shell (bash) are most commonly used as the system shell. The user shell often includes convenience features and unlike the system shell, doesn't need to be POSIX-compliant. System and user shells are programming language interpreters, interacted with through Command Line Interface (CLI) of a program called the Terminal. The Graphical User Interface (GUI) which lets you open desktop applications or move files with your mouse is a graphical shell.
+The shell is a program that allows the user to interact with the system, it sends requests to the kernel. Most systems consist of multiple shells: a login shell, a system shell, an interactive terminal user shell, and a graphical shell. **Login shell** is the first "parent" shell started by the system that all system processes and other shells are direct or indirect "children" of. **System shell** (located at /bin/sh) is the shell used by the system to automatically run shell scripts as a part of the regular operation of the OS. Bourne Shell (**sh**) or its derivatives like the Bourne-Again Shell (**bash**) or **dash** are most commonly used as the system shell. User's **interactive terminal shell** can include additional convenience features and unlike the system shell, doesn't need to be POSIX-compliant (though it is recommended). It can be interacted with through Command Line Interface (CLI) of a program called the Terminal. The Graphical User Interface (GUI) which lets you open desktop applications or move files with your mouse is also a shell. 
+
+Most shells are, in fact, a programming language interpreters. As such, it is possible to create **variables** in any given shell (variables are 'containers' that can store numbers or words). Shell variables are by default local/exclusive to the shell they were created by. They can also be **exported**, which lets any "child process", including other "sub"-shells, access them. By defining and exporting variables in a login shell, we can therefore create **Environment Variables**, accessible to the entire system (since login shell is the first shell started by the system, which then starts other shells and processes). **PATH** is a special environment variable, which includes the list of all locations that the shell will check, when attempting to run a program. More about environment variables and PATH later, along with code examples.
 
 #### Files
 
-Most commands aren't actually a part of the shell scripting language. Instead, they are small programs stored on your system as executable files. The other type of commands are shell builtin functions, stored directly in the shell. The shell itself is also a program, an executable file. In fact, even the kernel itself is a file. This is because in Unix-like systems, everything is a file (or to be precise, a file descriptor). 
-
-Directories or "folders", are a special kind of files able to store other files, they're the building blocks of the filesystem. Symbolic Link files are "shortcuts" that point to a different file. Block Device files represent physical hardware, input/output devices such as hard drives or printers. There's even more special file types but for now just remember dirs and symlinks.
+Most "terminal commands" aren't actually a part of the shell scripting language. Instead, they are small programs stored on your system as **executable files** (the other type of commands are shell builtin functions, stored directly in the shell). The shell itself is also a program, an executable file. In fact, even the kernel itself is a file. This is because on Unix-like systems, (almost) everything is a file. **Directories**, "dirs" or "folders", are a special kind of files able to store other files, they're the building blocks of the **filesystem**. Symbolic Link files, or **symlinks**, are "shortcuts" that point to a different file. Block Device files represent physical hardware, input/output (i/o) devices such as hard drives or printers. There's even more special file types but for now just remember dirs and symlinks. On UNIX, all files have an owner and additionally belong to a user group. They also have a set of **permissions** that determine who can access them and in what way. Each file specifies **read** (open), **write** (modify) and **execute** (run) permissions, abbreviated as **rwx**, for the owner, the user group and everyone/others, abbreviated as u, g and o respectively. This will be explained in detail later.
 
 #### Filesystem
 
-The filesystem is simply a tree-like structure of directories. At the very base of it is the / directory, called root. The / directory consists of many other directories and their subdirectories that store files depending on their function. This directory is similar to C:\ on Windows but unlike on Windows, if you connect a second drive to your computer, it will appear as a file inside your filesystem, rather than a separate drive outside of /. If this sounds confusing, don't worry, this will be covered in detail later but it's important that you first understand the concept of a tree-like directory structure.
+The filesystem is simply a tree-like structure of directories. At the very base of it is the **/** directory, called **root**. The **/** directory consists of many other directories and their subdirectories that store files depending on their function. This directory is similar to C:\ on Windows but unlike on Windows, if you connect a second drive to your computer, it will appear as a file inside your filesystem, rather than a separate drive outside of /. If this sounds confusing, don't worry, this will be covered in detail later but it's important that you first understand the concept of a tree-like directory structure. You can check it out yourself on your own Linux system, or check out [this example](https://www.linuxtrainingacademy.com/wp-content/uploads/2014/03/linux-directory-tree.jpg) that depicts it pretty well. As you can see, your user directory is located at home, which itself is located at /. The full **path** therefore will be **/home/your_user_name/**. As you can see, / is also used as a separator here, to indicate that one file or directory is inside of another one. If you're unfamiliar with what a file path is - it is exactly this, a description of a file's location in the filesystem. A path might be absolute, starting always at /, or relative to e.g. your current location when traversing the filesystem - I will go into this later. There exist multiple **filesystem formats**, the most common format on Linux is **ext4**, you might already be familiar with ntfs used by Windows or **fat32**, used by e.g. USB sticks (as well as bootloader partitions, but we'll talk about that later). There are other Linux-specific filesystems such as **btrfs** (used by e.g. Fedora) but the differences between them are of little relevance for most users.
+
+
+## Other System Components (optional section)
+
+#### Bootloader
+
+#### Init System
+
+#### Display Server & Compositor
+
+#### Display Manager
+
+#### Desktop Environments & Window Managers
+
+#### Sound Server
+
+
+## The Terminal (practical section)
+
+#### Filesystem Navigation
+
+#### Basic File Operations 
+
+#### File Ownership & Permissions
+
+#### Variables and Environment Variables
+
+#### PATH
+
 
 ## Good Resources
 
