@@ -38,10 +38,10 @@ Most major distributions have a single main release model, but many also offer a
 Package managers are meant to work with specific **packaging formats**. The availability of certain packages might vary between the existing formats but practically speaking this is rarely an issue due to the active community.
 
 The most noteable packaging formats and their corresponding package managers are:
-- Debian-based distros (Ubuntu, Mint etc.) share a packaging format called .deb, managed by the **APT** package manager.
-- Red Hat family distros (eg. Fedora) use the .rpm package format and manage their packages using **DNF**.
-- SUSE also uses .rpm packages but manages them using **ZYpp**.
-- Arch-based distros use **pacman** to manage .pkg.tar.zst packages, which are simply compressed archives.
+- Debian-based distros (Ubuntu, Mint etc.) share a packaging format called deb, managed by the **APT** package manager.
+- Red Hat family distros (eg. Fedora) use the rpm package format and manage their packages using **DNF**.
+- SUSE also uses rpm packages but manages them using **ZYpp**.
+- Arch-based distros use **pacman** to manage pkg.tar.zst packages, which are simply compressed archives.
 
 #### Package Dependencies 
 
