@@ -58,7 +58,7 @@ Aside from default system packages, there exist supplementary packaging formats 
 Some of those packaging formats (AppImage) bundle all the required dependencies together (static linking) with the software to make it as portable as possible, at the cost of large file size and slow security updates. Others (Flatpak) offer runtimes - dependency groups that allow many dependencies to be shared. Some (nix) are essentially distribution-agnostic package managers, separate from the OS. For most users, Flatpaks are the recommended format to use for applications on most distributions, other than Ubuntu which ships Snaps by default.
 
 
-## UNIX basics
+## UNIX essentials
 
 Before learning anything else, you should know the general structure of the system as well as its main components. While crucial to understand Linux, most of this knowledge applies to UNIX systems, or even operating systems in general.
 Any Unix-like system consists of the following basic components: kernel, shell, programs and the filesystem. More detailed components such as an init system or a bootloader can then be distinguished depending on their exact function or structure, I will talk about those later.
