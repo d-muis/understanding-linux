@@ -55,7 +55,7 @@ Aside from default system packages, there exist supplementary packaging formats 
 - **AppImage**
 - **nix**
   
-Some of those packaging formats (AppImage) bundle all the required dependencies together (static linking) with the software to make it as portable as possible, at the cost of large file size and slow security updates. Others (Flatpak) offer runtimes - dependency groups that allow many dependencies to be shared. Some (nix) are essentially distribution-agnostic package managers, separate from the OS. For most users, Flatpaks are the recommended format to use for applications on most distributions, other than Ubuntu which ships Snaps by default.
+Some of those packaging formats (AppImage) bundle all the required dependencies together (static linking) with the software to make it as portable as possible, at the cost of large file size and slow security updates. Others (Flatpak) offer runtimes - dependency groups that allow many dependencies to be shared. Some (nix) are essentially distribution-agnostic package managers, separate from the OS. For most users, Flatpaks are the recommended format to use for applications on most distributions, other than Ubuntu which ships Snaps by default. On Ubuntu, the default package manager (apt) will itself decide to install snaps rather than debs when appropriate (which is controversial but shouldn't affect you for the most part).
 
 
 ## UNIX essentials
