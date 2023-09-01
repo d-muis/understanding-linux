@@ -1,4 +1,4 @@
-# Understanding Linux
+# Understanding Linux (Work In Progress, 50% complete)
 
 Power User's Baby Steps, or everything I wish I had known when I switched to Linux, as a Windows power user.
 
